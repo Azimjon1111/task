@@ -8,7 +8,8 @@ module.exports = {
     extend: {
       colors: {
         primary: "#177EFF",
-        own_gray: "#F5F6FA"
+        own_gray: "#F5F6FA",
+        dark_gray: "#667281"
       },
     },
     fontFamily: {

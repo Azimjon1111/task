@@ -5,7 +5,7 @@ interface ButtonsProps {
     disabled ?: boolean,
     onClick: React.ButtonHTMLAttributes<HTMLButtonElement>["onClick"];
  };
-const Buttons = ({onClick, name, className, disabled}: ButtonsProps) =>{
+const Button = ({onClick, name, className, disabled}: ButtonsProps) =>{
     return(
         <button 
         className={"bg-primary text-white font-arial text-center rounded-[8px]"+ " " + className}
@@ -15,4 +15,4 @@ const Buttons = ({onClick, name, className, disabled}: ButtonsProps) =>{
         </button>
     )
 }
-export default Buttons
+export default Button
