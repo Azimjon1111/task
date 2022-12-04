@@ -9,7 +9,9 @@ module.exports = {
       colors: {
         primary: "#177EFF",
         own_gray: "#F5F6FA",
-        dark_gray: "#667281"
+        gray_light: "#B2C2DF",
+        dark_gray: "#667281",
+        light_blue: "#70AEFD",
       },
     },
     fontFamily: {

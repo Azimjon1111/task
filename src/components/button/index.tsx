@@ -8,7 +8,7 @@ interface ButtonsProps {
 const Button = ({onClick, name, className, disabled}: ButtonsProps) =>{
     return(
         <button 
-        className={"bg-primary text-white font-arial text-center rounded-[8px]"+ " " + className}
+        className={"bg-primary text-[14px] text-white font-arial text-center rounded-[8px]"+ " " + className}
         onClick={onClick}
         >
             {name}
