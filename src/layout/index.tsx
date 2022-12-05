@@ -36,12 +36,14 @@ const Layout = ({ children} : any) => {
       <Navbar/>
       <Sidebar />
       <div
-        style={{ paddingLeft: "240px", paddingRight: "40px", paddingTop: "100px" }} className="all-content bg-[#F5F5F5]  min-h-screen"
+        style={{ paddingLeft: "228px", paddingRight: "20px", paddingTop: "64px", paddingBottom: "16px" }} className="all-content bg-[#F5F5F5]  min-h-screen"
       >
         {/* {
         sideBar && responsive ?  <div onClick={()=> setSideBar(false)} className='overlay w-full h-full fixed left-0 top-0 bg-black z-10 opacity-50'></div> :  null
         } */}
+        <div className='bg-white rounded-lg'>
         {children}
+        </div>
       </div>
     </>
   )
