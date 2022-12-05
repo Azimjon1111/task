@@ -4,6 +4,8 @@ import Tab from "../components/tab";
 import DropDown from "../components/dropdown/index";
 import DatePicker from "../components/date-time-picker";
 import Input from "../components/input/index";
+import {useDispatch, useSelector} from 'react-redux'
+import { createPost } from "../data/posts";
 import { useState } from "react";
 import {
   table_headers,
@@ -12,10 +14,21 @@ import {
   table_body,
 } from "../utils/consts";
 export default function CreatePost() {
+  const dispatch = useDispatch()
   const [dropdown, setDropdown] = useState(5);
   const [page, setPage] = useState(0);
   const [date, setDate] = useState(new Date().toISOString());
   console.log(date);
+  const Submit = () =>{
+    dispatch(
+      createPost({
+        id: 1,
+        date: date,
+        status: 'published',
+        title: 'React js and Next js are similar'
+      })
+      )
+  }
   return (
     <div className="pt-[19px] px-7 space-y-2">
       <h1>Post information</h1>
@@ -41,10 +54,10 @@ export default function CreatePost() {
       />
       <Button
         name="Submit"
-        link="/create"
         className="w-[163px] h-[36px]"
         onClick={() => {
           console.log("salom");
+          Submit()
         }}
       />
     </div>
