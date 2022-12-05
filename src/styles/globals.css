@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
-@tailwind utilities;    
+@tailwind utilities;
+
+
+::-webkit-calendar-picker-indicator::after {
+    content: '';
+    display: block;
+    background: url('../../public/assets/svg/date-icon.svg') no-repeat;
+    background-size: 10%;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    transform: translateX(-2%);
+}
+
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    color: rgba(0, 0, 0, 0);
+    /* opacity: 1; */
+    background: url('../../public/assets/svg/date-icon.svg') no-repeat;
+    width: 12px;
+    height: 12px;
+    border-width: thin;
+}
