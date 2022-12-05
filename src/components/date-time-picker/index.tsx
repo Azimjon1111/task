@@ -11,10 +11,10 @@ const DatePicker = ({
   disabled,
 }: DatePickerProps) => {
   return (
-    <div className="flex items-center justify-center">
-      <div className="datepicker relative form-floating mb-3 xl:w-96">
-        <div className="border-2 rounded-[8px] px-3 py-2 flex items-center justify-between">
-          <p>
+    <div className="flex items-center mt-2">
+      <div className="datepicker relative form-floating mb-3 ">
+        <div className="rounded-[8px] bg-own_gray h-[40px] w-[356px] px-3 py-2 flex items-center justify-between">
+          <p className="text-sm font-arial">
             {value?.slice(0, 10).split("-").reverse().join(".")}{" "}
             {value.slice(11, 16)}
           </p>

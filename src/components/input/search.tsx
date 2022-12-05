@@ -24,7 +24,7 @@ const SearchInput = ({
           value={value}
           onChange={(e)=>{onChange(e.target.value)}}
           className= {
-              "block p-4  w-[432px] h-[36px] text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              "block p-4  w-[432px] h-[36px] text-sm text-gray-900 bg-own_gray rounded-lg  placeholder-[#667281]  font-normal"
               + " " + className
           } 
           placeholder="Search"

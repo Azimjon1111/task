@@ -1,8 +1,11 @@
-export default function CreatePost() {
-    return (
-      <div>
-        <h1 className='text-center text-primary text-3xl font-bold'>Create Post</h1>
-      </div>
-    )
-  }
-  
+import Layout from "../layout/index";
+import Posts from '../widgets/posts';
+import CreatePost from '../widgets/createPost'
+import { useState } from "react";
+export default function Create() {
+  return (
+    <Layout>
+      <CreatePost/>
+    </Layout>
+  );
+}
