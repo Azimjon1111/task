@@ -14,7 +14,7 @@ const DatePicker = ({
     <div className="flex items-center mt-2">
       <div className="datepicker relative form-floating mb-3 ">
         <div className="rounded-[8px] bg-own_gray h-[40px] w-[356px] px-3 py-2 flex items-center justify-between">
-          <p className="text-sm font-arial">
+          <p className="text-sm ">
             {!value ? <>
             Time
             </>: <>

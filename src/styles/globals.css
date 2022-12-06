@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+ 
+body{
+    font-family: Arial;
+}
 
 ::-webkit-calendar-picker-indicator::after {
     content: '';
@@ -34,4 +38,13 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
     -webkit-appearance:none; /* Safari and Chrome */
     appearance:none;
     background:url("../../public/assets/svg/down-black.svg") 100% 50% no-repeat;
+}
+
+.styled-select-dropdown{
+    -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none; /* Safari and Chrome */
+    appearance:none;
+    background:url("../../public/assets/svg/down-black.svg") 85% 55% no-repeat;
+    background-color: #F5F6FA;
+    font-size: 12px;
 }

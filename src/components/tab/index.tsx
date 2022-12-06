@@ -10,7 +10,7 @@ interface ButtonsProps {
 const Tab = ({onClick, name, className, disabled, length, isActive}: ButtonsProps) =>{
     return(
         <button 
-        className={` ${isActive ? 'bg-primary text-white' : 'bg-own_gray text-black'}  text-[14px] flex items-center justify-between p-2 font-arial text-center rounded-[8px]`+ " " + className}
+        className={` ${isActive ? 'bg-primary text-white' : 'bg-own_gray text-black'}  text-[14px] flex items-center justify-between p-2 text-center rounded-[8px]`+ " " + className}
         onClick={onClick}
         >
              <span>

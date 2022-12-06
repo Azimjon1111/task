@@ -12,7 +12,7 @@ const dispatch = useDispatch()
         <thead>
             <tr>
           {head.map((el: any, i: number) => (
-              <td key={el.id} className="border-b-[1px] text-[#667281] text-left px-8 py-4">{el.value}</td>
+              <td key={el.id} className="border-b-[1px] text-[#667281] text-[13px] text-left px-8 py-4">{el.value}</td>
               )
             )}
             </tr>
@@ -20,10 +20,10 @@ const dispatch = useDispatch()
         <tbody>
         {body.map((el: any, index: number) => (
             <tr key={el.id}>
-            <td className="border-b-[1px] px-8 py-4 h-[80px]">{el.id}</td>
-            <td className="border-b-[1px] px-8 py-4 h-[80px]">{el.title}</td>
-            <td className="border-b-[1px] px-8 py-4 h-[80px]">{RangeTwoDates(new Date(el.date), new Date())}</td>
-            <td className="border-b-[1px] px-8 py-4 h-[80px]">
+            <td className="border-b-[1px] text-[14px] px-8 py-4 h-[80px]">{el.id}</td>
+            <td className="border-b-[1px] text-[14px] px-8 py-4 h-[80px]">{el.title}</td>
+            <td className="border-b-[1px] text-[14px] px-8 py-4 h-[80px]">{RangeTwoDates(new Date(el.date), new Date())}</td>
+            <td className="border-b-[1px] text-[14px] px-8 py-4 h-[80px]">
               <DropDown
               data={statuses}
               value={el.status}

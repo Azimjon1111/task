@@ -13,7 +13,7 @@ const Button = ({onClick, name, className, disabled, link}: ButtonsProps) =>{
         {link ? <>
         <Link href={link}>
         <button 
-        className={"bg-primary text-[14px] text-white font-arial text-center rounded-[8px]"+ " " + className}
+        className={"bg-primary text-[14px] text-white text-center rounded-[8px]"+ " " + className}
         onClick={onClick}
         >
             {name}
@@ -21,7 +21,7 @@ const Button = ({onClick, name, className, disabled, link}: ButtonsProps) =>{
             </Link>
             </>: <>
             <button 
-        className={"bg-primary text-[14px] text-white font-arial text-center rounded-[8px]"+ " " + className}
+        className={"bg-primary text-[14px] text-white text-center rounded-[8px]"+ " " + className}
         onClick={onClick}
         >
             {name}

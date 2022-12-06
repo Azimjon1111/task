@@ -117,6 +117,7 @@ export default function Posts() {
       <Table head={table_headers} body={render_posts} />
     </div>
       <div className="flex justify-between px-[24px] pt-[32.5px] items-center">
+        <div className="flex space-x-[12px] items-center">
         <DropDown
           data={table_dropdown_pagination}
           value={dropdown}
@@ -124,7 +125,9 @@ export default function Posts() {
             setDropdown(e.target.value);
             setPage(1)
           }}
-        />
+          />
+          <p className="text-[#667281] text-[13px] ">Showing {dropdown*(page-1)+1} - {page*dropdown} of {count_current_posts}</p>
+          </div>
         <Pagination
           data_length={count_current_posts}
           page={page}

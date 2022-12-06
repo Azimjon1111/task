@@ -21,7 +21,7 @@ const DropDown = ({
         defaultValue={"Status"}
         onChange={(e)=>{onChange(e)}}
         className={
-          "  text-sm rounded-[4px]  block w-[64px] h-[36px] bg-own_gray"
+          "  text-sm rounded-[4px] styled-select-dropdown px-3  block w-[64px] h-[36px] bg-own_gray"
           + " " + className
         } 
       >

@@ -21,9 +21,9 @@ const Sidebar = () => {
                     {
                         Sidebar_data.map((el, index)=>(
                             <Link href={el.href} key={index} passHref legacyBehavior>
-                            <li className="bg-own_gray min-w-[184px] flex space-x-2 h-[40px] rounded-lg px-[18px] py-[8px] cursor-pointer">
+                            <li className="bg-own_gray min-w-[184px] flex items-center space-x-2 h-[40px] rounded-lg px-[18px] py-[8px] cursor-pointer">
                                 <img src={el.icon} className="w-6 h-6 " />
-                                    <a className='font-normal'>{el.title}</a>
+                                    <a className='font-normal text-[14px]'>{el.title}</a>
                             </li>
                             </Link>
                         ))
