@@ -21,14 +21,14 @@ export default function CreatePost() {
   console.log(date);
   const Submit = () =>{
     if(date && status && title){
-      dispatch(
-        createPost({
-          id: Math.floor(Math.random(100)*100),
-          date: date,
-          status: status,
-          title: title
-        })
-        )
+      // dispatch(
+      //   createPost({
+      //     id: Math.floor(Math.random(100)*100),
+      //     date: date,
+      //     status: status,
+      //     title: title
+      //   })
+      //   )
         alert('Successfuly created !!')
         setTitle('')
         setStatus(statuses[0].value)

@@ -4,9 +4,10 @@ import {RangeTwoDates} from '../../utils/functions'
 import {statuses} from '../../utils/consts'
 import {updatePost } from '../../data/posts'
 import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../store";
 const Table = ({head, body}: any) => {
 //   var head = ["Company", "Country", "Contact"];
-const dispatch = useDispatch()
+const dispatch = useDispatch<AppDispatch>()
   return (
       <table className="w-full mx-auto bg-white rounded-xl">
         <thead>
@@ -27,11 +28,9 @@ const dispatch = useDispatch()
               <DropDown
               data={statuses}
               value={el.status}
-              onChange={(e: any) => {
-                console.log(e);
-                dispatch(
-                  updatePost({status: e, index})
-                ) 
+              onChange={(element: any) => {
+                console.log(element);
+                // dispatch(updatePost({status: element, index})) 
               }}
               />
               {/* {el.status} */}

@@ -9,10 +9,10 @@ const store = configureStore({
   reducer: rootReducer,
   devTools: true
 });
-export type RootState = ReturnType<typeof store.getState>
-
 export const useSelector = useReduxSelector;
 
 export const useDispatch = () => useReduxDispatch();
-
+export type RootState = ReturnType<typeof store.getState>
+// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+export type AppDispatch = typeof store.dispatch
 export default store;

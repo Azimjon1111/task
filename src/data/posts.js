@@ -1,14 +1,14 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, createEntityAdapter } from '@reduxjs/toolkit';
 const initialState = {
     data: [],
     render_data: [],
     count: 0,
     status: 'idle',
 };
-export const getPosts = createAsyncThunk('/posts', async(query: any)=>{
+export const getPosts = createAsyncThunk('/posts', async(query)=>{
   console.log(query)
   console.log(query.search.length)
-  const posts = JSON.parse(localStorage.getItem("posts") as string);
+  const posts = JSON.parse(localStorage.getItem("posts") );
 //   console.log(typeof posts)
 let data  = {}
   if(query.search){
@@ -40,23 +40,21 @@ console.log(data)
 //     return posts
 //   }  
 })
-export const createPost = createAsyncThunk('/posts/create', async(item: any)=>{
+export const createPost = createAsyncThunk('/posts/create', async(item)=>{
     console.log(item)
     let posts = [];
     if (localStorage.getItem("posts")) {
-      posts = JSON.parse(localStorage.getItem("posts") as string);
+      posts = JSON.parse(localStorage.getItem("posts"));
     }
     posts.push(item);
     console.log(posts)
     localStorage.setItem("posts", JSON.stringify(posts));
     return posts
 })
-export const updatePost = createAsyncThunk('/posts/update', async(item: any)=>{
-  console.log(item)
-  console.log(item.index)
+export const updatePost = createAsyncThunk('/posts/update', async(item)=>{
   let posts = [];
   if (localStorage.getItem("posts")) {
-    posts = JSON.parse(localStorage.getItem("posts") as string);
+    posts = JSON.parse(localStorage.getItem("posts"));
   }
   posts[item.index].status = item.status
   localStorage.setItem("posts", JSON.stringify(posts));
@@ -67,29 +65,29 @@ const posts = createSlice({
     initialState,
     extraReducers(builder) {
       builder
-        .addCase(getPosts.pending, (state: any, action: any) => {
+        .addCase(getPosts.pending, (state, action) => {
           state.status = 'loading'
         })
-        .addCase(getPosts.fulfilled, (state: any, action:  any) => {
+        .addCase(getPosts.fulfilled, (state, action ) => {
           state.status = 'succeeded'
           state.data = action.payload.posts
           state.render_data = action.payload.data.data
           state.count = action.payload.data.count
         })
-        .addCase(getPosts.rejected, (state: any, action:  any) => {
+        .addCase(getPosts.rejected, (state, action ) => {
           state.status = 'failed'
           state.error = action.error.message
         })
-        .addCase(createPost.fulfilled, (state: any, action:  any) => {
+        .addCase(createPost.fulfilled, (state, action ) => {
             console.log(action, "41");
             state.status = 'idle';
             state.data = action.payload;
         })
-        .addCase(updatePost.fulfilled, (state: any, action:  any) => {
+        .addCase(updatePost.fulfilled, (state, action ) => {
           state.status = 'idle';
           state.data = action.payload;
       })
       }
   });
-export const selectPosts = (state: any) => state.posts.data
+export const selectPosts = (state) => state.posts.data
 export const reducer = posts.reducer;

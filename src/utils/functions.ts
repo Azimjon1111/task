@@ -1,5 +1,5 @@
 const RangeTwoDates = ( date1:Date, date2: Date ) =>{
-    const diff = Math.abs(date1 - date2);
+    const diff = Math.abs(Number(date1) - Number(date2));
     const diffSeconds = Math.floor(diff / 1000);
     const diffDays = Math.floor(diff /(1000 * 3600 * 24))
     const diffHours = Math.floor(diff/(1000 * 3600))

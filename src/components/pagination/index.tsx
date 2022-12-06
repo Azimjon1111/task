@@ -6,8 +6,8 @@ interface ButtonsProps {
     setPage: Function;
  };
 const Pagination = ({page, data_length, setPage, dropdown}: ButtonsProps) =>{
-    let paginations = []
-    for(let i = 0; i < Math.ceil(data_length/dropdown); i++){
+    let paginations = Array()
+    for(let i = 0; i < Math.ceil(Number(data_length)/Number(dropdown)); i++){
         paginations.push(i+1)
     }
     // console.log(paginations)
@@ -17,16 +17,16 @@ const Pagination = ({page, data_length, setPage, dropdown}: ButtonsProps) =>{
     // console.log(dropdown)
     
     const onClick = (action: string) =>{
-        console.log(paginations.indexOf(page))
-        if(action == "increment" && paginations.indexOf(page+1) != -1 ){
-            setPage(page + 1);
-        }else if(action == "decrement" && paginations.indexOf(page-1) != -1){
-            setPage(page - 1);
+        console.log(paginations.indexOf(Number(page)))
+        if(action == "increment" && paginations.indexOf(Number(page)+1) != -1 ){
+            setPage(Number(page) + 1);
+        }else if(action == "decrement" && paginations.indexOf(Number(page)-1) != -1){
+            setPage(Number(page) - 1);
         }
     }
     const ChangePage = (element: any) => {
-        console.log(paginations.indexOf(page))
-        if(paginations.indexOf(page) != -1 ){
+        console.log(paginations.indexOf(Number(page)))
+        if(paginations.indexOf(Number(page)) != -1 ){
             setPage(element);
         }
     }

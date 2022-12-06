@@ -6,6 +6,7 @@ import DatePicker from "../components/date-time-picker";
 import {useDispatch, useSelector} from 'react-redux'
 import { getPosts, selectPosts } from "../data/posts";
 import { useState, useEffect } from "react";
+import { RootState } from "../store";
 import {
   table_headers,
   table_dropdown_pagination,
@@ -15,13 +16,13 @@ import Table from "../components/table";
 import Pagination from "../components/pagination";
 export default function Posts() {
   const dispatch = useDispatch()
-  const postStatus = useSelector(state => state.posts.status)
-  const allPosts = useSelector(state => state.posts.data)
-  const render_posts = useSelector(state => state.posts.render_data)
-  const count_current_posts = useSelector(state => state.posts.count)
+  const postStatus = useSelector((state:RootState) => state.posts.status)
+  const allPosts = useSelector((state:RootState) => state.posts.data)
+  const render_posts = useSelector((state:RootState) => state.posts.render_data)
+  const count_current_posts = useSelector((state:RootState) => state.posts.count)
   const [searchValue, setSearchValue] = useState('')
   const [dropdown, setDropdown] = useState(5);
-  const [currentStatus, setCurrentStatus] = useState(null)
+  const [currentStatus, setCurrentStatus] = useState<any>(null)
   const [page, setPage] = useState(1);
   const [date, setDate] = useState(new Date().toISOString());
   useEffect(()=>{
@@ -32,7 +33,7 @@ export default function Posts() {
         dropdown: dropdown,
         currentStatus: currentStatus
       }
-      dispatch(getPosts(query))
+      // dispatch(getPosts(query))
     }
   },[postStatus])
   useEffect(()=>{
@@ -42,7 +43,7 @@ export default function Posts() {
       dropdown: dropdown,
       currentStatus: currentStatus
     }
-      dispatch(getPosts(query))
+      // dispatch(getPosts(query))
   },[page, searchValue, currentStatus, dropdown])
   // const Table_body = () =>{
   //   if(!currentStatus){
@@ -90,11 +91,12 @@ export default function Posts() {
           }}
         />
         {
-          statuses.map((el)=>(
+          statuses.map((el, index)=>(
             <Tab
+            key={index}
             isActive={currentStatus == el.value}
             name={el.value}
-            length={allPosts.filter((item)=> item.status === el.value).length}
+            length={allPosts.filter((item: any)=> item.status === el.value).length}
             className="min-w-[163px] min-h-[36px]"
             onClick={() => {
               console.log("salom");
