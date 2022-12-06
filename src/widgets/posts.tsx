@@ -26,7 +26,13 @@ export default function Posts() {
   const [date, setDate] = useState(new Date().toISOString());
   useEffect(()=>{
     if(postStatus == 'idle'){
-      dispatch(getPosts())
+      let query = {
+        page: page,
+        search: searchValue,
+        dropdown: dropdown,
+        currentStatus: currentStatus
+      }
+      dispatch(getPosts(query))
     }
   },[postStatus])
   useEffect(()=>{

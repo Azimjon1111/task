@@ -53,12 +53,12 @@ export const createPost = createAsyncThunk('/posts/create', async(item: any)=>{
 })
 export const updatePost = createAsyncThunk('/posts/update', async(item: any)=>{
   console.log(item)
+  console.log(item.index)
   let posts = [];
   if (localStorage.getItem("posts")) {
     posts = JSON.parse(localStorage.getItem("posts") as string);
   }
-  posts.push(item);
-  console.log(posts)
+  posts[item.index].status = item.status
   localStorage.setItem("posts", JSON.stringify(posts));
   return posts
 })
