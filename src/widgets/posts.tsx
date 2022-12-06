@@ -19,7 +19,7 @@ export default function Posts() {
   const postStatus = useSelector(state => state.posts.status)
   const allPosts = useSelector(selectPosts)
   const [dropdown, setDropdown] = useState(5);
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const [date, setDate] = useState(new Date().toISOString());
   console.log(date);
   useEffect(()=>{
@@ -75,17 +75,18 @@ export default function Posts() {
           }}
         />
       </div>
-      <Table head={table_headers} body={allPosts} />
+      <Table head={table_headers} body={allPosts.slice(dropdown*(page-1), page*dropdown)} />
       <div className="flex justify-between px-[24px] pt-[32.5px] items-center">
         <DropDown
           data={table_dropdown_pagination}
-          value={table_dropdown_pagination[0].value}
+          value={dropdown}
           onChange={(e: any) => {
-            console.log(e);
+            setDropdown(e.target.value);
+            setPage(1)
           }}
         />
         <Pagination
-          data_length={table_body.length}
+          data_length={allPosts.length}
           page={page}
           setPage={(e: number) => {
             setPage(e);

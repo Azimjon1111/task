@@ -16,16 +16,18 @@ import {
 export default function CreatePost() {
   const dispatch = useDispatch()
   const [dropdown, setDropdown] = useState(5);
+  const [title, setTitle]= useState('')
   const [page, setPage] = useState(0);
-  const [date, setDate] = useState(new Date().toISOString());
+  const [status, setStatus] = useState('')
+  const [date, setDate] = useState();
   console.log(date);
   const Submit = () =>{
     dispatch(
       createPost({
-        id: 1,
+        id: Math.floor(Math.random(100)*100),
         date: date,
-        status: 'published',
-        title: 'React js and Next js are similar'
+        status: status,
+        title: title
       })
       )
   }
@@ -33,23 +35,26 @@ export default function CreatePost() {
     <div className="pt-[19px] px-7 space-y-2">
       <h1>Post information</h1>
       <Input
-        value=""
+        value={title}
         placeholder="Title"
         onChange={(e: string) => {
           console.log(e);
+          setTitle(e)
         }}
       />
       <DropDown
           data={statuses}
-          value={statuses[0].value}
+          value={status}
           onChange={(e: any) => {
             console.log(e);
+            setStatus(e)
           }}
         />
       <DatePicker
         value={date}
         onChange={(val: any) => {
           setDate(val.target.value);
+          // console.log(val.target.value);
         }}
       />
       <Button

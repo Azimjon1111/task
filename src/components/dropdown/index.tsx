@@ -19,7 +19,7 @@ interface DropDownProps {
           value={value}
           placeholder="Status"
           defaultValue={"Status"}
-          onChange={()=>{onChange('Hello')}}
+          onChange={(e)=>{onChange(e.target.value)}}
           className={
             "  text-sm rounded-[4px] px-3  block w-[356px] h-[40px] bg-own_gray"
             + " " + className

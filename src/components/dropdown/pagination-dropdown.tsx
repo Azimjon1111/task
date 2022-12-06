@@ -19,7 +19,7 @@ const DropDown = ({
         value={value}
         placeholder="Status"
         defaultValue={"Status"}
-        onChange={()=>{onChange('Hello')}}
+        onChange={(e)=>{onChange(e)}}
         className={
           "  text-sm rounded-[4px]  block w-[64px] h-[36px] bg-own_gray"
           + " " + className

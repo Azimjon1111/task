@@ -15,13 +15,17 @@ const DatePicker = ({
       <div className="datepicker relative form-floating mb-3 ">
         <div className="rounded-[8px] bg-own_gray h-[40px] w-[356px] px-3 py-2 flex items-center justify-between">
           <p className="text-sm font-arial">
+            {!value ? <>
+            Time
+            </>: <>
             {value?.slice(0, 10).split("-").reverse().join(".")}{" "}
             {value.slice(11, 16)}
+            </>}
           </p>
           <input
             className="bg-transparent flex items-center outline-none "
             style={{ maxWidth: "17px" }}
-            onChange={()=>{onChange()}}
+            onChange={(e)=>{onChange(e)}}
             type="datetime-local"
           />
         </div>
