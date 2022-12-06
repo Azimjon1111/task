@@ -51,6 +51,17 @@ export const createPost = createAsyncThunk('/posts/create', async(item: any)=>{
     localStorage.setItem("posts", JSON.stringify(posts));
     return posts
 })
+export const updatePost = createAsyncThunk('/posts/update', async(item: any)=>{
+  console.log(item)
+  let posts = [];
+  if (localStorage.getItem("posts")) {
+    posts = JSON.parse(localStorage.getItem("posts") as string);
+  }
+  posts.push(item);
+  console.log(posts)
+  localStorage.setItem("posts", JSON.stringify(posts));
+  return posts
+})
 const posts = createSlice({
     name: 'posts',
     initialState,
@@ -74,6 +85,10 @@ const posts = createSlice({
             state.status = 'idle';
             state.data = action.payload;
         })
+        .addCase(updatePost.fulfilled, (state: any, action:  any) => {
+          state.status = 'idle';
+          state.data = action.payload;
+      })
       }
   });
 export const selectPosts = (state: any) => state.posts.data

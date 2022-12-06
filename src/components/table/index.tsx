@@ -1,4 +1,5 @@
 import React from "react";
+import {RangeTwoDates} from '../../utils/functions'
 const Table = ({head, body}: any) => {
 //   var head = ["Company", "Country", "Contact"];
   return (
@@ -16,7 +17,7 @@ const Table = ({head, body}: any) => {
             <tr key={el.id}>
             <td className="border-b-[1px] px-8 py-4 h-[80px]">{el.id}</td>
             <td className="border-b-[1px] px-8 py-4 h-[80px]">{el.title}</td>
-            <td className="border-b-[1px] px-8 py-4 h-[80px]">{el.time}</td>
+            <td className="border-b-[1px] px-8 py-4 h-[80px]">{RangeTwoDates(new Date(el.date), new Date())}</td>
             <td className="border-b-[1px] px-8 py-4 h-[80px]">{el.status}</td>
             </tr>
         ))}
