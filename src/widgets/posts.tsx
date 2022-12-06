@@ -10,7 +10,6 @@ import {
   table_headers,
   table_dropdown_pagination,
   statuses,
-  table_body,
 } from "../utils/consts";
 import Table from "../components/table";
 import Pagination from "../components/pagination";
@@ -19,6 +18,7 @@ export default function Posts() {
   const postStatus = useSelector(state => state.posts.status)
   const allPosts = useSelector(selectPosts)
   const [dropdown, setDropdown] = useState(5);
+  const [currentStatus, setCurrentStatus] = useState(null)
   const [page, setPage] = useState(1);
   const [date, setDate] = useState(new Date().toISOString());
   console.log(date);
@@ -28,6 +28,19 @@ export default function Posts() {
     }
   },[postStatus])
   console.log(allPosts)
+  const Table_body = () =>{
+    if(!currentStatus){
+      return {
+        count: allPosts.length,
+        data: allPosts.slice(dropdown*(page-1), page*dropdown)
+      }
+    }else{
+      return {
+       count: allPosts.filter((item)=> item.status == currentStatus).length ,
+       data: allPosts.filter((item)=> item.status == currentStatus).slice(dropdown*(page-1), page*dropdown)
+      }
+    }
+  }
   return (
     <div className="pt-4 pb-6">
       <div className="flex justify-between px-6">
@@ -46,26 +59,32 @@ export default function Posts() {
           }}
         />
       </div>
-      <div className="px-6 mt-3 space-x-3">
+      <div className="px-6 mt-3 space-x-3 flex ">
         <Tab
-          isActive={true}
+          isActive={!currentStatus}
           name="All statuses"
-          length={12}
+          length={allPosts.length}
           className="min-w-[163px] min-h-[36px]"
           onClick={() => {
             console.log("salom");
+            setCurrentStatus(null)
           }}
         />
-        <Tab
-          isActive={false}
-          name="Draft"
-          length={12}
-          className="min-w-[163px] min-h-[36px]"
-          onClick={() => {
-            console.log("salom");
-          }}
-        />
-        <Tab
+        {
+          statuses.map((el)=>(
+            <Tab
+            isActive={currentStatus == el.value}
+            name={el.value}
+            length={allPosts.filter((item)=> item.status === el.value).length}
+            className="min-w-[163px] min-h-[36px]"
+            onClick={() => {
+              console.log("salom");
+              setCurrentStatus(el.value)
+            }}
+            />
+            ))
+          }
+        {/* <Tab
           isActive={false}
           name="Published"
           length={12}
@@ -73,9 +92,9 @@ export default function Posts() {
           onClick={() => {
             console.log("salom");
           }}
-        />
+        /> */}
       </div>
-      <Table head={table_headers} body={allPosts.slice(dropdown*(page-1), page*dropdown)} />
+      <Table head={table_headers} body={Table_body().data} />
       <div className="flex justify-between px-[24px] pt-[32.5px] items-center">
         <DropDown
           data={table_dropdown_pagination}
@@ -86,7 +105,7 @@ export default function Posts() {
           }}
         />
         <Pagination
-          data_length={allPosts.length}
+          data_length={Table_body().count}
           page={page}
           setPage={(e: number) => {
             setPage(e);
