@@ -1,17 +1,44 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 const initialState = {
     data: [],
+    render_data: [],
+    count: 0,
     status: 'idle',
 };
 export const getPosts = createAsyncThunk('/posts', async(query: any)=>{
-  const posts = localStorage.getItem("posts")
+  console.log(query)
+  console.log(query.search.length)
+  const posts = JSON.parse(localStorage.getItem("posts") as string);
 //   console.log(typeof posts)
-  return JSON.parse(posts as string)
+let data  = {}
+  if(query.search){
+    data = {
+      count:  posts.filter((item)=> item.title.slice(0, query.search.length).toLowerCase() == query.search.toLowerCase()).length,
+      data: posts.filter((item)=> {
+        console.log(item.title.slice(0, query.search.length) == query.search)
+       return item.title.slice(0, query.search.length).toLowerCase() == query.search.toLowerCase()
+      } 
+      ).slice(query.dropdown*(query.page-1), query.page*query.dropdown)
+    }
+    console.log(data, "data")
+  }else if(!query.currentStatus){
+    data = {
+      count: posts.length,
+      data: posts.slice(query.dropdown*(query.page-1), query.page*query.dropdown)
+    }
+  }else{
+    data = {
+     count: posts.filter((item)=> item.status == query.currentStatus).length ,
+     data: posts.filter((item)=> item.status == query.currentStatus).slice(query.dropdown*(query.page-1), query.page*query.dropdown)
+    }
+  }
+console.log(data)
+  return {data, posts}
 //   if(posts == null){
 //       return []
 //   }else{
 //     return posts
-//   }
+//   }  
 })
 export const createPost = createAsyncThunk('/posts/create', async(item: any)=>{
     console.log(item)
@@ -34,7 +61,9 @@ const posts = createSlice({
         })
         .addCase(getPosts.fulfilled, (state: any, action:  any) => {
           state.status = 'succeeded'
-          state.data = action.payload
+          state.data = action.payload.posts
+          state.render_data = action.payload.data.data
+          state.count = action.payload.data.count
         })
         .addCase(getPosts.rejected, (state: any, action:  any) => {
           state.status = 'failed'

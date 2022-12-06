@@ -10,7 +10,7 @@ const Pagination = ({page, data_length, setPage, dropdown}: ButtonsProps) =>{
     for(let i = 0; i < Math.ceil(data_length/dropdown); i++){
         paginations.push(i+1)
     }
-    console.log(paginations)
+    // console.log(paginations)
     // let pagination_count = 
     // console.log(pagination_count)
     // console.log(data_length)

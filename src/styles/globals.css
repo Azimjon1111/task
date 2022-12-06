@@ -22,3 +22,10 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
     height: 12px;
     border-width: thin;
 }
+.styled-select {
+    -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none; /* Safari and Chrome */
+    appearance:none;
+    background:url("../../public/assets/svg/down.svg") 96% 50% no-repeat;
+    background-color: #F5F6FA;
+}

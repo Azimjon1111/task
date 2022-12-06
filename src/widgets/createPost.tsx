@@ -15,21 +15,27 @@ import {
 } from "../utils/consts";
 export default function CreatePost() {
   const dispatch = useDispatch()
-  const [dropdown, setDropdown] = useState(5);
   const [title, setTitle]= useState('')
-  const [page, setPage] = useState(0);
-  const [status, setStatus] = useState('')
-  const [date, setDate] = useState();
+  const [status, setStatus] = useState(statuses[0].value)
+  const [date, setDate] = useState(null);
   console.log(date);
   const Submit = () =>{
-    dispatch(
-      createPost({
-        id: Math.floor(Math.random(100)*100),
-        date: date,
-        status: status,
-        title: title
-      })
-      )
+    if(date && status && title){
+      dispatch(
+        createPost({
+          id: Math.floor(Math.random(100)*100),
+          date: date,
+          status: status,
+          title: title
+        })
+        )
+        alert('Successfuly created !!')
+        setTitle('')
+        setStatus(statuses[0].value)
+        setDate(null)
+      }else{
+        alert('Title/Time/Status are required')
+      }
   }
   return (
     <div className="pt-[19px] px-7 space-y-2">

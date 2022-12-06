@@ -16,39 +16,50 @@ import Pagination from "../components/pagination";
 export default function Posts() {
   const dispatch = useDispatch()
   const postStatus = useSelector(state => state.posts.status)
-  const allPosts = useSelector(selectPosts)
+  const allPosts = useSelector(state => state.posts.data)
+  const render_posts = useSelector(state => state.posts.render_data)
+  const count_current_posts = useSelector(state => state.posts.count)
+  const [searchValue, setSearchValue] = useState('')
   const [dropdown, setDropdown] = useState(5);
   const [currentStatus, setCurrentStatus] = useState(null)
   const [page, setPage] = useState(1);
   const [date, setDate] = useState(new Date().toISOString());
-  console.log(date);
   useEffect(()=>{
     if(postStatus == 'idle'){
       dispatch(getPosts())
     }
   },[postStatus])
-  console.log(allPosts)
-  const Table_body = () =>{
-    if(!currentStatus){
-      return {
-        count: allPosts.length,
-        data: allPosts.slice(dropdown*(page-1), page*dropdown)
-      }
-    }else{
-      return {
-       count: allPosts.filter((item)=> item.status == currentStatus).length ,
-       data: allPosts.filter((item)=> item.status == currentStatus).slice(dropdown*(page-1), page*dropdown)
-      }
+  useEffect(()=>{
+    let query = {
+      page: page,
+      search: searchValue,
+      dropdown: dropdown,
+      currentStatus: currentStatus
     }
-  }
+      dispatch(getPosts(query))
+  },[page, searchValue, currentStatus, dropdown])
+  // const Table_body = () =>{
+  //   if(!currentStatus){
+  //     return {
+  //       count: allPosts.length,
+  //       data: allPosts.slice(dropdown*(page-1), page*dropdown)
+  //     }
+  //   }else{
+  //     return {
+  //      count: allPosts.filter((item)=> item.status == currentStatus).length ,
+  //      data: allPosts.filter((item)=> item.status == currentStatus).slice(dropdown*(page-1), page*dropdown)
+  //     }
+  //   }
+  // }
   return (
     <>
     <div>
       <div className="flex justify-between px-6">
         <SearchInput
-          value=""
+          value={searchValue}
           onChange={(e: string) => {
             console.log(e);
+            setSearchValue(e)
           }}
         />
         <Button
@@ -69,6 +80,7 @@ export default function Posts() {
           onClick={() => {
             console.log("salom");
             setCurrentStatus(null)
+            setPage(1)
           }}
         />
         {
@@ -81,6 +93,7 @@ export default function Posts() {
             onClick={() => {
               console.log("salom");
               setCurrentStatus(el.value)
+              setPage(1)
             }}
             />
             ))
@@ -95,7 +108,7 @@ export default function Posts() {
           }}
         /> */}
       </div>
-      <Table head={table_headers} body={Table_body().data} />
+      <Table head={table_headers} body={render_posts} />
     </div>
       <div className="flex justify-between px-[24px] pt-[32.5px] items-center">
         <DropDown
@@ -107,7 +120,7 @@ export default function Posts() {
           }}
         />
         <Pagination
-          data_length={Table_body().count}
+          data_length={count_current_posts}
           page={page}
           setPage={(e: number) => {
             setPage(e);
