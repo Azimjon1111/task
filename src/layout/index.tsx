@@ -41,7 +41,7 @@ const Layout = ({ children} : any) => {
         {/* {
         sideBar && responsive ?  <div onClick={()=> setSideBar(false)} className='overlay w-full h-full fixed left-0 top-0 bg-black z-10 opacity-50'></div> :  null
         } */}
-        <div className='bg-white rounded-lg min-h-[613px]'>
+        <div className='bg-white rounded-lg min-h-[613px] pt-4 pb-6 flex flex-col justify-between'>
         {children}
         </div>
       </div>

@@ -42,7 +42,8 @@ export default function Posts() {
     }
   }
   return (
-    <div className="pt-4 pb-6">
+    <>
+    <div>
       <div className="flex justify-between px-6">
         <SearchInput
           value=""
@@ -95,6 +96,7 @@ export default function Posts() {
         /> */}
       </div>
       <Table head={table_headers} body={Table_body().data} />
+    </div>
       <div className="flex justify-between px-[24px] pt-[32.5px] items-center">
         <DropDown
           data={table_dropdown_pagination}
@@ -114,6 +116,7 @@ export default function Posts() {
         />
       </div>
       {/* <DatePicker value={date} onChange={(val: any)=>{setDate(val.target.value)}} /> */}
-    </div>
+    </>
+
   );
 }
