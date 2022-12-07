@@ -16,6 +16,10 @@ const RangeTwoDates = ( date1:Date, date2: Date ) =>{
 }
 const IdGenerator = () =>{
   const posts = JSON.parse(localStorage.getItem("posts") as string);
-  return posts.length+1
+  if(posts){
+      return posts.length+1
+  }else{
+    return 1
+  }
 }
 export {RangeTwoDates, IdGenerator}
