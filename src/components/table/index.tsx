@@ -30,7 +30,7 @@ const dispatch = useDispatch<AppDispatch>()
               value={el.status}
               onChange={(element: any) => {
                 console.log(element);
-                // dispatch(updatePost({status: element, index})) 
+                dispatch(updatePost({status: element, index})) 
               }}
               />
               {/* {el.status} */}

@@ -5,6 +5,7 @@ import DropDown from "../components/dropdown/index";
 import DatePicker from "../components/date-time-picker";
 import Input from "../components/input/index";
 import {useDispatch, useSelector} from 'react-redux'
+import { RootState, AppDispatch } from "../store";
 import { createPost } from "../data/posts";
 import { useState } from "react";
 import {
@@ -13,22 +14,23 @@ import {
   statuses,
   table_body,
 } from "../utils/consts";
+import {IdGenerator} from '../utils/functions'
 export default function CreatePost() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   const [title, setTitle]= useState('')
   const [status, setStatus] = useState(statuses[0].value)
   const [date, setDate] = useState(null);
   console.log(date);
   const Submit = () =>{
     if(date && status && title){
-      // dispatch(
-      //   createPost({
-      //     id: Math.floor(Math.random(100)*100),
-      //     date: date,
-      //     status: status,
-      //     title: title
-      //   })
-      //   )
+      dispatch(
+        createPost({
+          id: IdGenerator(),
+          date: date,
+          status: status,
+          title: title
+        })
+        )
         alert('Successfuly created !!')
         setTitle('')
         setStatus(statuses[0].value)

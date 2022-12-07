@@ -6,7 +6,7 @@ import DatePicker from "../components/date-time-picker";
 import {useDispatch, useSelector} from 'react-redux'
 import { getPosts, selectPosts } from "../data/posts";
 import { useState, useEffect } from "react";
-import { RootState } from "../store";
+import { RootState, AppDispatch } from "../store";
 import {
   table_headers,
   table_dropdown_pagination,
@@ -15,15 +15,15 @@ import {
 import Table from "../components/table";
 import Pagination from "../components/pagination";
 export default function Posts() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   const postStatus = useSelector((state:RootState) => state.posts.status)
   const allPosts = useSelector((state:RootState) => state.posts.data)
   const render_posts = useSelector((state:RootState) => state.posts.render_data)
   const count_current_posts = useSelector((state:RootState) => state.posts.count)
-  const [searchValue, setSearchValue] = useState('')
-  const [dropdown, setDropdown] = useState(5);
+  const [searchValue, setSearchValue] = useState<string>('')
+  const [dropdown, setDropdown] = useState<number>(5);
   const [currentStatus, setCurrentStatus] = useState<any>(null)
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState<number>(1);
   const [date, setDate] = useState(new Date().toISOString());
   useEffect(()=>{
     if(postStatus == 'idle'){
@@ -33,7 +33,7 @@ export default function Posts() {
         dropdown: dropdown,
         currentStatus: currentStatus
       }
-      // dispatch(getPosts(query))
+      dispatch(getPosts(query))
     }
   },[postStatus])
   useEffect(()=>{
@@ -43,7 +43,7 @@ export default function Posts() {
       dropdown: dropdown,
       currentStatus: currentStatus
     }
-      // dispatch(getPosts(query))
+      dispatch(getPosts(query))
   },[page, searchValue, currentStatus, dropdown])
   // const Table_body = () =>{
   //   if(!currentStatus){
